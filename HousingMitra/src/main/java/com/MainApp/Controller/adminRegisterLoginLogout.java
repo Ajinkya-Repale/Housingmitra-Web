@@ -1,18 +1,19 @@
 package com.MainApp.Controller;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MainApp.Entity.Admin;
+import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
 import com.MainApp.Service.AdminService;
+import com.MainApp.Service.ComplaintService;
 import com.MainApp.Service.NoticeService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,9 @@ public class adminRegisterLoginLogout {
 	
 	@Autowired
 	NoticeService nService;
+	
+	@Autowired
+	ComplaintService cService;
 	 
 	@RequestMapping("/aregister")
 	public String showAdminRegister()
@@ -70,7 +74,8 @@ public class adminRegisterLoginLogout {
 	
 	@RequestMapping("/admin-login")
 	public String handleAdminlogin(@RequestParam("name") String name
-	,@RequestParam("pass") String pass,HttpServletRequest req,Model model)
+	,@RequestParam("pass") String pass,
+	HttpServletRequest req,Model model) 
 	{
 		String res = aService.CheckAdmin(name, pass);
 		HttpSession s = req.getSession();
@@ -80,6 +85,11 @@ public class adminRegisterLoginLogout {
 		{
 			List<Notice> ln = nService.getNotices(name);
 			model.addAttribute("ln",ln);
+			 
+			//for taking complaints from user to admin 
+			List<Complaint> lac = cService.getAllComplaints();
+			model.addAttribute("lac",lac);
+			
 			
 			s.setAttribute("atoken", name);
 			return "adminhome";

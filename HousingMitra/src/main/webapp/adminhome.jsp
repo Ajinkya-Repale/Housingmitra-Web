@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.Complaint"%>
 <%@page import="java.util.List"%>
 
 <%@page import="com.MainApp.Entity.Notice"%>
@@ -168,8 +169,6 @@
 }
 
 
-
-
  /*View Notice */
  
  
@@ -240,6 +239,85 @@
 }
  
 
+/*view Complaints*/
+
+
+/* Complaints Table (Same style as Notice) */
+#VComplaint {
+  position: absolute;
+  top: 100px; /* so it doesn't overlap with Notice */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  display: none;
+  z-index: 10;
+}
+
+#VComplaint .close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#VComplaint .close-button:hover {
+  color: #e74c3c;
+}
+
+#VComplaint h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#VComplaint table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+#VComplaint th, #VComplaint td {
+  padding: 12px 15px;
+  text-align: left;
+  color: #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#VComplaint th {
+  background-color: rgba(44, 62, 80, 0.6);
+  color: #000;
+  font-weight: bold;
+}
+
+#VComplaint tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#VComplaint tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 
@@ -263,7 +341,7 @@ if(atoken != null)
     <a href="#" class="nav-button" >Manage Members</a>
     <a class="nav-button" onclick="showNotice()">Add Notice</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
-    <a href="#" class="nav-button">View Complaints</a>
+    <a class="nav-button" onclick="showComplaints()">View Complaints</a>
     <a href="#" class="nav-button">Club House Booking</a>
     <a class="nav-button" onclick="showStaff()">Staff Management</a>
      
@@ -350,6 +428,53 @@ List<Notice> l=(List<Notice>) request.getAttribute("ln");
 
 
 
+<!-- View Complaints  Start-->
+<%
+List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
+%>
+
+<section id="VComplaint">
+	<button class="close-button" onclick="closeComplaints()">✖</button>
+	<h3>Complaints</h3>
+	<table>
+	    <thead>
+		 	<tr>
+		 		<th>Complaint Id</th>
+	            <th>Complaint Name</th>
+	            <th>Complaint Type</th>
+	            <th>Complaint Date</th> 
+	            <th>Complaint Message</th>
+		 	</tr>	
+	    </thead>
+	    <tbody>
+	          <%
+	            for(Complaint lc:lac)
+	            {
+	            	%>
+	            	<tr>
+	            	    <td><%=lc.getComplaintid() %></td>
+	            	    <td><%=lc.getComplaintName() %></td>
+	            	    <td><%=lc.getComplaintType() %></td>
+	            	    <td><%=lc.getComplaintDate() %></td>
+	            	    <td><%=lc.getComplaintMessage() %></td>
+	            	</tr>
+	            	<%
+	            }
+	          %>
+	    
+	    </tbody>
+	
+	</table>
+
+
+
+
+
+</section>
+
+
+<!-- View Complaints  Ends-->
+
 
 
 
@@ -386,7 +511,17 @@ List<Notice> l=(List<Notice>) request.getAttribute("ln");
 	  document.getElementById("VNotice").style.display = "none";
   }
 
+  // complaints section
   
+  function showComplaints()
+  {
+	  document.getElementById("VComplaint").style.display = "block";
+  }
+  
+  function closeComplaints()
+  {
+	  document.getElementById("VComplaint").style.display = "none";
+  }
   
   
 

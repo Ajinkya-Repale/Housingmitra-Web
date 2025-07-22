@@ -20,7 +20,8 @@ public class AddEditDeleteNotice {
 	NoticeService nService;
 	
 	@RequestMapping("/add-notice")
-	public String handleAddNotice(@ModelAttribute Notice n,Model model,HttpServletRequest req)
+	public String handleAddNotice(@ModelAttribute Notice n
+	,Model model,HttpServletRequest req)
 	{
 		boolean status=nService.addNotice(n);
 		

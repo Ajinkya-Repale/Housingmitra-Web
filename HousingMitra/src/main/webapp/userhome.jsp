@@ -169,11 +169,8 @@
 }
 
 
-
-
  /*View Notice */
- 
- 
+  
  
  #VNotice {
   position: absolute;
@@ -322,28 +319,29 @@ if(utoken != null)
 <!-- View notice Section Ends-->
 
 
+
+
+
+
 <!-- Add Complaints form starts -->
 <div class="form-container" id="AddComplaint">
   <button class="close-button" onclick="CloseComplaints()">✖</button>
-  <form action="add-notice" method="post">
+  <form action="add-complaint" method="post">
     <h3>Create Complaints</h3>
-    
-    <label>Notice Id:</label>
-    <input type="number" name="nid" required>
 
-    <label>Notice Name:</label>
-    <input type="text" name="noticeName" placeholder="Notice Name" required>
+    <label>Complaint Name:</label>
+    <input type="text" name="complaintName" placeholder="Complaint Name" required>
 
-    <label>Notice Type:</label>
-    <input type="text" name="noticeType" placeholder="Notice Type(water crises,meting)" required>
+    <label>Complaint Type:</label>
+    <input type="text" name="complaintType" placeholder="Complaint Type(water crises,meting)" required>
 
-    <label>Notice Date:</label>
-    <input type="date" name="noticeDate" required>
+    <label>Complaint Date:</label>
+    <input type="date" name="complaintDate" required>
 
-    <label>Notice Message:</label>
-    <textarea name="noticeMessage" rows="5" placeholder="Write notice here..." required></textarea>
+    <label>Complaint Message:</label>
+    <textarea name="complaintMessage" rows="7" placeholder="Write Complaint here..." required></textarea>
 
-    
+    <input type="hidden" name="userName"  value="<%=utoken%>" >
     
     <button type="submit">Send</button>
   </form>
@@ -352,13 +350,6 @@ if(utoken != null)
 
 
 <!-- Add Complaints form starts -->
-
-
-
-
-
-
-
 
 
 
