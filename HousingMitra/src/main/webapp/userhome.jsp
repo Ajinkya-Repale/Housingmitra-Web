@@ -171,72 +171,133 @@
 
  /*View Notice */
   
- 
- #VNotice {
-  position: absolute;
-  top: 50px;
+	 
+	 #VNotice {
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent; /* fully transparent */
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#VNotice .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000; /* black close button */
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#VNotice .close-button:hover {
+	  color: #e74c3c;
+	}
+	
+	#VNotice h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000; /* black heading */
+	}
+	
+	/* Table Styling */
+	#VNotice table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent; /* ✅ no background */
+	}
+	
+	#VNotice th, #VNotice td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000; /* ✅ black text */
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
+	}
+	
+	#VNotice th {
+	  background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
+	  color: #000; /* ✅ black heading text */
+	  font-weight: bold;
+	}
+	
+	#VNotice tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3); /* very light gray shading */
+	}
+	
+	#VNotice tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
+	}
+	 
+/*Club HOuse Booking form */
+
+	
+	.club-form-container {
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 800px;
-  background: transparent; /* fully transparent */
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px; /* Reduced from 30px */
+  background: transparent;
   border-radius: 10px;
-  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: none;
   z-index: 10;
 }
 
-#VNotice .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000; /* black close button */
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-#VNotice .close-button:hover {
-  color: #e74c3c;
-}
-
-#VNotice h3 {
+.club-form-container h3 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #000; /* black heading */
+  margin-bottom: 10px; /* Reduced from 20px */
+  color: #000;
 }
 
-/* Table Styling */
-#VNotice table {
+.club-form-container input[type="text"],
+.club-form-container input[type="date"],
+.club-form-container input[type="time"],
+.club-form-container input[type="number"],
+.club-form-container textarea {
   width: 100%;
-  border-collapse: collapse;
-  background: transparent; /* ✅ no background */
+  padding: 8px; /* Slightly smaller */
+  margin-bottom: 12px; /* Reduced from 20px */
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
 }
 
-#VNotice th, #VNotice td {
-  padding: 12px 15px;
-  text-align: left;
-  color: #000; /* ✅ black text */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
+.club-form-container textarea {
+  resize: vertical;
+  min-height: 50px; /* Ensures it’s not too tall */
 }
 
-#VNotice th {
-  background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
-  color: #000; /* ✅ black heading text */
-  font-weight: bold;
+.club-form-container button[type="submit"] {
+  width: 100%;
+  padding: 10px; /* Slightly smaller */
+  background-color: rgba(44, 62, 80, 0.8);
+  color: white;
+  font-size: 15px; /* Slightly smaller */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-#VNotice tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3); /* very light gray shading */
+.club-form-container button[type="submit"]:hover {
+  background-color: rgba(44, 62, 80, 1);
 }
 
-#VNotice tr:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
-}
- 
+
+	 
 
 </style>
 
@@ -262,7 +323,7 @@ if(utoken != null)
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="AddComplaints()">Add Complaints</a>
     <a href="#" class="nav-button">View Complaints</a>
-    <a href="#" class="nav-button">Club House Booking</a>
+    <a class="nav-button" onclick="openClubBookingForm()">Club House Booking</a>
     <a class="nav-button" onclick="showStaff()">Staff Management</a>
      
 
@@ -369,6 +430,66 @@ if(utoken != null)
 
 
 
+
+
+
+
+<!-- Club House Booking Section Start -->
+	
+
+
+<div class="club-form-container" id="clubBookingForm">
+  <button class="close-button" onclick="closeClubBookingForm()">✖</button>
+  <form action="add-club-booking" method="post">
+    <h3>Club House Booking</h3>
+
+    <label>Your Name:</label>
+    <input type="text" name="userName" placeholder="Enter your name" required>
+
+    <label>Contact Number:</label>
+    <input type="text" name="userPhone" placeholder="Enter phone number" required>
+
+    <label>Flat Number:</label>
+    <input type="text" name="flatNo" placeholder="Enter flat number" required>
+
+    <label>Booking Date:</label>
+    <input type="date" name="bookingDate" required>
+
+    <label>Start Time:</label>
+    <input type="time" name="startTime" required>
+
+    <label>End Time:</label>
+    <input type="time" name="endTime" required>
+
+    <label>Purpose:</label>
+    <input type="text" name="purpose" placeholder="Birthday, Meeting, etc." required>
+
+    <label>Number of Guests:</label>
+    <input type="number" name="guestCount" placeholder="Enter guest count" required>
+
+    <input type="hidden" name="adminApproval" value="Pending">
+
+    <button type="submit">Book Now</button>
+  </form>
+</div>
+
+
+
+<!-- Club House Booking Form End -->
+
+	
+	
+
+<!-- Club House Booking Section Ends -->
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 
   //Add Notice Section Script
@@ -395,6 +516,18 @@ if(utoken != null)
   }
 
   
+  //club house booking form
+  
+  function openClubBookingForm()
+  {
+	  document.getElementById("clubBookingForm").style.display = "block";
+  }
+  
+  
+  function closeClubBookingForm()
+  {
+	  document.getElementById("clubBookingForm").style.display = "none";
+  }
   
   
 
