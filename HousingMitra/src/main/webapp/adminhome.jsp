@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.User"%>
 <%@page import="com.MainApp.Entity.Complaint"%>
 <%@page import="java.util.List"%>
 
@@ -90,45 +91,45 @@
 
 	
 	.form-container {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 30px;
-  width: 400px;
-  background: transparent; /* ✅ Transparent like the table */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: none;
-  z-index: 10;
-}
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  padding: 30px;
+	  width: 400px;
+	  background: transparent; /* ✅ Transparent like the table */
+	  border-radius: 10px;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	  display: none;
+	  z-index: 10;
+	}
 
-.form-container h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000; /* Black heading like table */
-}
+	.form-container h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000; /* Black heading like table */
+	}
 
-.form-container label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #000; /* Black text */
-}
+	.form-container label {
+	  display: block;
+	  margin-bottom: 8px;
+	  font-weight: bold;
+	  color: #000; /* Black text */
+	}
 
-.form-container input[type="text"],
-.form-container input[type="date"],
-.form-container input[type="number"],
-.form-container textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 15px;
-  background: rgba(255, 255, 255, 0.3); /* ✅ Light transparent fields */
-  color: #000; /* Black text */
-}
+	.form-container input[type="text"],
+	.form-container input[type="date"],
+	.form-container input[type="number"],
+	.form-container textarea {
+	  width: 100%;
+	  padding: 10px;
+	  margin-bottom: 20px;
+	  border-radius: 6px;
+	  border: 1px solid rgba(0, 0, 0, 0.2);
+	  font-size: 15px;
+	  background: rgba(255, 255, 255, 0.3); /* ✅ Light transparent fields */
+	  color: #000; /* Black text */
+	}
 
 .form-container textarea {
   resize: vertical;
@@ -308,13 +309,78 @@
 }
 
 
+/* view Members-Manage members */
 
+/* View Members Table (Same as Notice & Complaint, with thin border) */
 
+	#VMember {
+	  position: absolute;
+	  top: 100px; /* adjust if needed */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent;
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#VMember .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#VMember .close-button:hover {
+	  color: #e74c3c;
+	}
+	
+	#VMember h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#VMember table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent;
+	  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
+	}
+	
+	#VMember th, #VMember td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000;
+	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin borders for cells */
+	}
+	
+	#VMember th {
+	  background-color: rgba(44, 62, 80, 0.6);
+	  color: #000;
+	  font-weight: bold;
+	}
+	
+	#VMember tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3);
+	}
+	
+	#VMember tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05);
+	}
 
-
-
-
-
+	/*Staff Mangment*/
+	
+	
 
 
 
@@ -336,9 +402,9 @@ if(atoken != null)
     <div class="logo"> 
       <img src="image1/person1.jpg" alt="Logo">
     </div>
-    <p class="logo-title">Admin,<%=atoken %></p>
+    <p class="logo-title">Admin, <%=atoken %></p>
 
-    <a href="#" class="nav-button" >Manage Members</a>
+    <a class="nav-button" onclick="openMembers()">Manage Members</a>
     <a class="nav-button" onclick="showNotice()">Add Notice</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="showComplaints()">View Complaints</a>
@@ -348,6 +414,71 @@ if(atoken != null)
 
     <a href="admin-logout" class="logout-button">Logout</a>
   </div>
+
+
+
+
+<!-- Manage Members view Start-->
+
+<%
+  List<User> ul =(List<User>)request.getAttribute("lau");
+%>
+ 
+ <section id="VMember">
+  <button class="close-button" onclick="closeMembers()">✖</button>
+  <h3>User Information</h3>
+  <table>
+      <thead>
+         <tr>
+            <th>User Id:</th>
+            <th>User Name:</th>
+            <th>User Email:</th>
+            <th>User FlatNo:</th> 
+            <th>User Phone no:</th>
+            <th>User Family members no:</th>
+            <th>User Password:</th>        
+         </tr>    
+      </thead>
+      <tbody>
+       <%
+       for(User u:ul)
+       {
+    	 %>
+    	    <tr>
+    	       <td><%=u.getUserid() %></td>
+    	       <td><%=u.getUserName() %></td>
+    	       <td><%=u.getUserEmail() %></td>
+    	       <td><%=u.getUserFlatno() %></td>
+    	       <td><%=u.getUserPhoneno() %></td>
+    	       <td><%=u.getUserFamno() %></td>
+    	       <td><%=u.getUserpass() %></td>
+    	    </tr>
+    	 <%   
+       } 
+       %>      
+      </tbody> 
+  </table>
+
+
+</section>
+ 
+
+
+
+<!-- Manage Members view Ends-->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -466,10 +597,6 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 	
 	</table>
 
-
-
-
-
 </section>
 
 
@@ -523,6 +650,19 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 	  document.getElementById("VComplaint").style.display = "none";
   }
   
+  //User infromation 
+  
+  function openMembers()
+  {
+	  document.getElementById("VMember").style.display = "block";
+  }
+  
+  
+  
+  function closeMembers()
+  {
+	  document.getElementById("VMember").style.display = "none";
+  }
   
 
 </script>   

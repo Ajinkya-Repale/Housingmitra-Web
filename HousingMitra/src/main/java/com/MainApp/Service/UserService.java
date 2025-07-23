@@ -1,5 +1,6 @@
 package com.MainApp.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,13 @@ public class UserService {
 		
 		return result;
 	}
+	
+	
+	public List<User> getallMembers()
+	{
+		return uRepo.findAll();
+	}
+	
 	
 	
 	

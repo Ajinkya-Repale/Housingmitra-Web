@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.MainApp.Entity.Admin;
 import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
+import com.MainApp.Entity.User;
 import com.MainApp.Service.AdminService;
 import com.MainApp.Service.ComplaintService;
 import com.MainApp.Service.NoticeService;
+import com.MainApp.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -30,6 +32,11 @@ public class adminRegisterLoginLogout {
 	
 	@Autowired
 	ComplaintService cService;
+	
+	@Autowired
+	UserService uService;
+	
+	
 	 
 	@RequestMapping("/aregister")
 	public String showAdminRegister()
@@ -83,12 +90,18 @@ public class adminRegisterLoginLogout {
 		
 		if(res.equals("exists"))
 		{
+			//notice added by admin 
 			List<Notice> ln = nService.getNotices(name);
 			model.addAttribute("ln",ln);
 			 
 			//for taking complaints from user to admin 
 			List<Complaint> lac = cService.getAllComplaints();
 			model.addAttribute("lac",lac);
+			
+			//for taking users information to the admin
+			
+			List<User> lau = uService.getallMembers();
+			model.addAttribute("lau",lau);
 			
 			
 			s.setAttribute("atoken", name);
