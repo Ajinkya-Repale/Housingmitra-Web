@@ -26,7 +26,7 @@ public class ClubHouse {
 	int UserPhone;
 	
 	@Column
-	int UserFlatNo;
+	String UserFlatNo;
 	
 	@Column
 	LocalDate bookingDate;
@@ -70,11 +70,13 @@ public class ClubHouse {
 		UserPhone = userPhone;
 	}
 
-	public int getUserFlatNo() {
+	
+
+	public String getUserFlatNo() {
 		return UserFlatNo;
 	}
 
-	public void setUserFlatNo(int userFlatNo) {
+	public void setUserFlatNo(String userFlatNo) {
 		UserFlatNo = userFlatNo;
 	}
 

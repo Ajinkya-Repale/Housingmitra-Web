@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MainApp.Entity.Admin;
+import com.MainApp.Entity.ClubHouse;
 import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
 import com.MainApp.Entity.User;
 import com.MainApp.Service.AdminService;
+import com.MainApp.Service.ClubHouseService;
 import com.MainApp.Service.ComplaintService;
 import com.MainApp.Service.NoticeService;
 import com.MainApp.Service.UserService;
@@ -35,6 +37,9 @@ public class adminRegisterLoginLogout {
 	
 	@Autowired
 	UserService uService;
+	
+	@Autowired
+	ClubHouseService clubService;
 	
 	
 	 
@@ -93,28 +98,51 @@ public class adminRegisterLoginLogout {
 			//notice added by admin 
 			List<Notice> ln = nService.getNotices(name);
 			model.addAttribute("ln",ln);
-			 
-			//for taking complaints from user to admin 
-			List<Complaint> lac = cService.getAllComplaints();
-			model.addAttribute("lac",lac);
-			
-			//for taking users information to the admin
-			
-			List<User> lau = uService.getallMembers();
-			model.addAttribute("lau",lau);
-			
 			
 			s.setAttribute("atoken", name);
-			return "adminhome";
+			return "redirect:/adminhome";
 		}
 		else
 		{
 			s.setAttribute("msg", res);
-			return "adminregister";
+			return "adminlogin";
 		}
-		
-		
+				
 	}
+	
+	
+	@RequestMapping("/adminhome")
+	public String handleAdminhome(Model model,HttpServletRequest req)
+	{
+		
+		 String aname = (String) req.getSession().getAttribute("atoken");
+		 
+		 List<Notice> ln = nService.getNotices(aname);
+		 model.addAttribute("ln", ln);
+		
+		//for taking club house booking to admin
+		List<ClubHouse> lab = clubService.getAllBooking();
+		model.addAttribute("lab",lab);
+		
+		//for taking complaints from user to admin 
+		List<Complaint> lac = cService.getAllComplaints();
+		model.addAttribute("lac",lac);
+		
+		//for taking users information to the admin
+		
+		List<User> lau = uService.getallMembers();
+		model.addAttribute("lau",lau);
+		
+		
+		return "adminhome";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	 
 	@RequestMapping("/admin-logout")

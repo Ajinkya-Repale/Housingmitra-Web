@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Home</title>
 
 <style>
     
@@ -103,70 +103,70 @@
   z-index: 10;
 }
 
-.form-container h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000; /* Black heading like table */
-}
+	.form-container h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000; /* Black heading like table */
+	}
+	
+	.form-container label {
+	  display: block;
+	  margin-bottom: 8px;
+	  font-weight: bold;
+	  color: #000; /* Black text */
+	}
 
-.form-container label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #000; /* Black text */
-}
-
-.form-container input[type="text"],
-.form-container input[type="date"],
-.form-container input[type="number"],
-.form-container textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 15px;
-  background: rgba(255, 255, 255, 0.3); /* ✅ Light transparent fields */
-  color: #000; /* Black text */
-}
-
-.form-container textarea {
-  resize: vertical;
-}
-
-.form-container button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: rgba(44, 62, 80, 0.8); /* semi-transparent button */
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: rgba(44, 62, 80, 1);
-}
+	.form-container input[type="text"],
+	.form-container input[type="date"],
+	.form-container input[type="number"],
+	.form-container textarea {
+	  width: 100%;
+	  padding: 10px;
+	  margin-bottom: 20px;
+	  border-radius: 6px;
+	  border: 1px solid rgba(0, 0, 0, 0.2);
+	  font-size: 15px;
+	  background: rgba(255, 255, 255, 0.3); /* ✅ Light transparent fields */
+	  color: #000; /* Black text */
+	}
+	
+	.form-container textarea {
+	  resize: vertical;
+	}
+	
+	.form-container button[type="submit"] {
+	  width: 100%;
+	  padding: 12px;
+	  background-color: rgba(44, 62, 80, 0.8); /* semi-transparent button */
+	  color: white;
+	  font-size: 16px;
+	  border: none;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  transition: background 0.3s ease;
+	}
+	
+	.form-container button[type="submit"]:hover {
+	  background-color: rgba(44, 62, 80, 1);
+	}
 
 /* Close Button (same as View Notice) */
-.form-container .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
+	.form-container .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
 
-.form-container .close-button:hover {
-  color: #e74c3c;
-}
+	.form-container .close-button:hover {
+	  color: #e74c3c;
+	}
 
 
  /*View Notice */
@@ -253,48 +253,48 @@
   display: none;
   z-index: 10;
 }
+	
+	.club-form-container h3 {
+	  text-align: center;
+	  margin-bottom: 10px; /* Reduced from 20px */
+	  color: #000;
+	}
+	
+	.club-form-container input[type="text"],
+	.club-form-container input[type="date"],
+	.club-form-container input[type="time"],
+	.club-form-container input[type="number"],
+	.club-form-container textarea {
+	  width: 100%;
+	  padding: 8px; /* Slightly smaller */
+	  margin-bottom: 12px; /* Reduced from 20px */
+	  border-radius: 6px;
+	  border: 1px solid rgba(0, 0, 0, 0.2);
+	  font-size: 14px;
+	  background: rgba(255, 255, 255, 0.3);
+	  color: #000;
+	}
 
-.club-form-container h3 {
-  text-align: center;
-  margin-bottom: 10px; /* Reduced from 20px */
-  color: #000;
-}
+	.club-form-container textarea {
+	  resize: vertical;
+	  min-height: 50px; /* Ensures it’s not too tall */
+	}
+	
+	.club-form-container button[type="submit"] {
+	  width: 100%;
+	  padding: 10px; /* Slightly smaller */
+	  background-color: rgba(44, 62, 80, 0.8);
+	  color: white;
+	  font-size: 15px; /* Slightly smaller */
+	  border: none;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  transition: background 0.3s ease;
+	}
 
-.club-form-container input[type="text"],
-.club-form-container input[type="date"],
-.club-form-container input[type="time"],
-.club-form-container input[type="number"],
-.club-form-container textarea {
-  width: 100%;
-  padding: 8px; /* Slightly smaller */
-  margin-bottom: 12px; /* Reduced from 20px */
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 14px;
-  background: rgba(255, 255, 255, 0.3);
-  color: #000;
-}
-
-.club-form-container textarea {
-  resize: vertical;
-  min-height: 50px; /* Ensures it’s not too tall */
-}
-
-.club-form-container button[type="submit"] {
-  width: 100%;
-  padding: 10px; /* Slightly smaller */
-  background-color: rgba(44, 62, 80, 0.8);
-  color: white;
-  font-size: 15px; /* Slightly smaller */
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.club-form-container button[type="submit"]:hover {
-  background-color: rgba(44, 62, 80, 1);
-}
+	.club-form-container button[type="submit"]:hover {
+	  background-color: rgba(44, 62, 80, 1);
+	}
 
 
 	 
@@ -319,7 +319,7 @@ if(utoken != null)
     </div>
     <p class="logo-title">User,<%=utoken %></p>
 
-    
+    <a href="/userhome" class="nav-button">Home</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="AddComplaints()">Add Complaints</a>
     <a href="#" class="nav-button">View Complaints</a>
@@ -329,11 +329,6 @@ if(utoken != null)
 
     <a href="user-logout" class="logout-button">Logout</a>
   </div>
-
-
-
-
-
 
 
 
@@ -410,16 +405,7 @@ if(utoken != null)
 
 
 
-<!-- Add Complaints form starts -->
-
-
-
-
-
-
-
-
-
+<!-- Add Complaints form Ends -->
 
 
 
@@ -444,25 +430,25 @@ if(utoken != null)
     <h3>Club House Booking</h3>
 
     <label>Your Name:</label>
-    <input type="text" name="userName" placeholder="Enter your name" required>
+    <input type="text" name="UserName" placeholder="Enter your name" required>
 
     <label>Contact Number:</label>
-    <input type="text" name="userPhone" placeholder="Enter phone number" required>
+    <input type="text" name="UserPhone" placeholder="Enter phone number" required>
 
     <label>Flat Number:</label>
-    <input type="text" name="flatNo" placeholder="Enter flat number" required>
+    <input type="text" name="UserFlatNo" placeholder="Enter flat number" required>
 
     <label>Booking Date:</label>
     <input type="date" name="bookingDate" required>
 
     <label>Start Time:</label>
-    <input type="time" name="startTime" required>
+    <input type="time" name="eventStartTime" required>
 
     <label>End Time:</label>
-    <input type="time" name="endTime" required>
+    <input type="time" name="eventEndTime" required>
 
     <label>Purpose:</label>
-    <input type="text" name="purpose" placeholder="Birthday, Meeting, etc." required>
+    <input type="text" name="bookingPurpose" placeholder="Birthday, Meeting, etc." required>
 
     <label>Number of Guests:</label>
     <input type="number" name="guestCount" placeholder="Enter guest count" required>

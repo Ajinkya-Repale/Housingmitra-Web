@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.ClubHouse"%>
 <%@page import="com.MainApp.Entity.User"%>
 <%@page import="com.MainApp.Entity.Complaint"%>
 <%@page import="java.util.List"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Admin Home </title>
 
 <style>
     
@@ -378,7 +379,73 @@
 	  background-color: rgba(0, 0, 0, 0.05);
 	}
 
-	/*Staff Mangment*/
+	/*Club House Booking*/
+	
+	/* Club House Booking Table (Same as Complaints Table but with Thin Border) */
+#vclubbooking {
+  position: absolute;
+  top: 120px; /* adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  display: none;
+  z-index: 10;
+}
+
+#vclubbooking .close-club-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#vclubbooking .close-club-btn:hover {
+  color: #e74c3c;
+}
+
+#vclubbooking h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#vclubbooking table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
+}
+
+#vclubbooking th, #vclubbooking td {
+  padding: 12px 15px;
+  text-align: left;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
+}
+
+#vclubbooking th {
+  background-color: rgba(44, 62, 80, 0.6);
+  color: #000;
+  font-weight: bold;
+}
+
+#vclubbooking tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#vclubbooking tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 	
 	
 
@@ -408,7 +475,7 @@ if(atoken != null)
     <a class="nav-button" onclick="showNotice()">Add Notice</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="showComplaints()">View Complaints</a>
-    <a href="#" class="nav-button">Club House Booking</a>
+    <a class="nav-button" onclick="showclubbooking()">Club House Booking</a>
     <a class="nav-button" onclick="showStaff()">Staff Management</a>
      
 
@@ -603,6 +670,80 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 <!-- View Complaints  Ends-->
 
 
+<!-- clubHouse booking view Start -->
+
+<%
+  List<ClubHouse> lab=(List)request.getAttribute("lab");
+%>
+
+
+<section id="vclubbooking">
+	<button class="close-club-btn" onclick="closeclubbooking()">✖</button>
+	<h3>club house booking</h3>
+	<table>
+		<thead>
+		  <tr>
+		  	<th>Booking Id</th>
+		  	<th>Member Name</th>
+		  	<th>Contact No</th>
+		  	<th>Flat No</th>
+		  	<th>Booking Date</th>
+		  	<th>Start Time</th>
+		  	<th>End Time</th>
+		  	<th>Purpose</th>
+		  	<th>No of Guest</th>
+		  </tr>
+		</thead>
+	    <tbody>
+	    <%
+	      for(ClubHouse lb:lab)
+	      {
+	    	%>
+	    	<tr>
+	    		<td><%=lb.getBookingId() %></td>
+	    		<td><%=lb.getUserName() %></td>
+	    		<td><%=lb.getUserPhone() %></td>
+	    		<td><%=lb.getUserFlatNo() %></td>
+	    		<td><%=lb.getBookingDate() %></td>
+	    		<td><%=lb.getEventStartTime() %></td>
+	    		<td><%=lb.getEventEndTime() %></td>
+	    		<td><%=lb.getBookingPurpose() %></td>
+	    		<td><%=lb.getGuestCount() %></td>	
+	    	</tr>   
+	    	
+	    	<%  
+	      }
+	    %>
+	    </tbody>
+	</table>	
+</section>
+
+
+
+<!-- clubHouse booking view Ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -657,13 +798,23 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 	  document.getElementById("VMember").style.display = "block";
   }
   
-  
-  
   function closeMembers()
   {
 	  document.getElementById("VMember").style.display = "none";
   }
   
+  
+  //club house booking
+  
+  function showclubbooking()
+  {
+	  document.getElementById("vclubbooking").style.display = "block";
+  }
+  
+  function closeclubbooking()
+  {
+	  document.getElementById("vclubbooking").style.display = "none";
+  }
 
 </script>   
  

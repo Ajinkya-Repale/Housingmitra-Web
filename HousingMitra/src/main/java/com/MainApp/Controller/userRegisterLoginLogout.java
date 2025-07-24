@@ -60,6 +60,19 @@ public class userRegisterLoginLogout {
 	}
 	
 	
+	@RequestMapping("/userhome")
+	public String hanleUserhome(Model model)
+	{
+		//displaying notices
+		List<Notice> lan = nService.getallNotices(); 
+		model.addAttribute("lan" , lan);
+		
+		return "userhome";
+	}
+	
+	
+	
+	
 	@RequestMapping("/user-login")
 	public String handleUserLogin(@RequestParam("userName") String name
 	,@RequestParam("userpass") int pass,HttpServletRequest req,Model model)
@@ -70,18 +83,14 @@ public class userRegisterLoginLogout {
 		
 		if(res.equals("exists"))
 		{
-			//displaying notices
-			List<Notice> lan = nService.getallNotices(); 
-			model.addAttribute("lan" , lan);
-			
-			
+
 			s.setAttribute("utoken", name);
-			return "userhome";
+			return "redirect:/userhome";
 		}
 		else
 		{
 			s.setAttribute("msg", res);
-			return "userregister";
+			return "userlogin";
 		}
 	}
 	
@@ -96,10 +105,6 @@ public class userRegisterLoginLogout {
 		
 		 return "redirect:/ulogin";
 	}
-	
-	
-	
-	
 	
 	
 }

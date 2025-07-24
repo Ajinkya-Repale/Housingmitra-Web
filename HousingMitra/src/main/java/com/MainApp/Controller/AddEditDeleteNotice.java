@@ -31,7 +31,7 @@ public class AddEditDeleteNotice {
 			List<Notice> ln = nService.getNotices(aname);
 			model.addAttribute("ln",ln);
 			
-			return "adminhome";
+			return "redirect:/adminhome";
 		}
 		else
 		{
