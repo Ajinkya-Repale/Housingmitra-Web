@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.Staff"%>
 <%@page import="com.MainApp.Service.NoticeService"%>
 <%@page import="java.util.List"%>
 
@@ -19,6 +20,7 @@
 	   background-image: url('image1/background.png');
 	   background-repeat: no-repeat;
 	   background-size: cover;
+	   background-attachment: fixed;
 	   opacity: 1.0;
 	   margin: 0;
 	}
@@ -296,6 +298,75 @@
 	  background-color: rgba(44, 62, 80, 1);
 	}
 
+	/*Show Staff */
+	
+	
+	#Vstaff {
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent;
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#Vstaff .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#Vstaff .close-button:hover {
+	  color: #e74c3c;
+	}
+	
+	#Vstaff h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#Vstaff table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent;
+	}
+	
+	#Vstaff th, #Vstaff td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000;
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Thin light border */
+	}
+	
+	#Vstaff th {
+	  background-color: rgba(44, 62, 80, 0.6);
+	  color: #000;
+	  font-weight: bold;
+	}
+	
+	#Vstaff tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3);
+	}
+	
+	#Vstaff tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05);
+	}
+	
+	
+
 
 	 
 
@@ -317,7 +388,7 @@ if(utoken != null)
     <div class="logo"> 
       <img src="image1/person2.jpg" alt="Logo">
     </div>
-    <p class="logo-title">User,<%=utoken %></p>
+    <p class="logo-title">User, <%=utoken %></p>
 
     <a href="/userhome" class="nav-button">Home</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
@@ -409,17 +480,6 @@ if(utoken != null)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <!-- Club House Booking Section Start -->
 	
 
@@ -465,8 +525,82 @@ if(utoken != null)
 
 	
 	
+<%
+List<Staff> last =(List<Staff>)request.getAttribute("last");
+%>	
+	
+	
+<!-- Show Staff  section Start-->	
 
-<!-- Club House Booking Section Ends -->
+<section id="Vstaff">
+  <button class="close-button" onclick="closeStaff()">✖</button>
+  <h3>Staff</h3>
+  <table>
+      <thead>
+         <tr>
+            <th>Staff Id</th>
+		  	<th>Staff Name</th>
+		  	<th>Staff Role</th>
+		  	<th>Assigned Area</th>
+		  	<th>Contact No</th>
+		  	<th>Join Date</th>
+		  	<th>Shift Start Time</th>
+		  	<th>Shift Start Time</th>       
+         </tr>    
+      </thead>
+      <tbody>
+       <%
+       for(Staff ls:last)
+       {
+    	 %>
+    	    <tr>
+    	       <td><%=ls.getStaffId() %></td>
+	    		<td><%=ls.getStaffName() %></td>
+	    		<td><%=ls.getStaffRole() %></td>
+	    		<td><%=ls.getStaffArea() %></td>
+	    		<td><%=ls.getStaffPhone() %></td>
+	    		<td><%=ls.getSaffJoiniDate() %></td>
+	    		<td><%=ls.getShiftStartTime() %></td>
+	    		<td><%=ls.getShiftEndTime() %></td>
+    	    </tr>
+    	 <%   
+       } 
+       %>      
+      </tbody> 
+  </table>
+
+
+</section>
+
+
+	
+	
+	
+	
+<!-- Show Staff  section Ends-->	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 
 
 
@@ -516,6 +650,19 @@ if(utoken != null)
   }
   
   
+  
+  //show staff
+  
+  function showStaff()
+  {
+	  document.getElementById("Vstaff").style.display = "block";
+  }
+  
+  
+  function closeStaff()
+  {
+	  document.getElementById("Vstaff").style.display = "none";
+  }
 
 </script>   
  

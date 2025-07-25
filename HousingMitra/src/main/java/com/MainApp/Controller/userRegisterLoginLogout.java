@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MainApp.Entity.Notice;
+import com.MainApp.Entity.Staff;
 import com.MainApp.Entity.User;
 import com.MainApp.Service.NoticeService;
+import com.MainApp.Service.StaffService;
 import com.MainApp.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +27,9 @@ public class userRegisterLoginLogout {
 	
 	@Autowired
 	NoticeService nService;
+	
+	@Autowired
+	StaffService stService; 
 	
 	@RequestMapping("/uregister")
 	public String showUserRegister()
@@ -66,6 +71,12 @@ public class userRegisterLoginLogout {
 		//displaying notices
 		List<Notice> lan = nService.getallNotices(); 
 		model.addAttribute("lan" , lan);
+		
+		//display staff
+		List<Staff> last = stService.getAllStaff();
+		model.addAttribute("last",last);
+		
+		
 		
 		return "userhome";
 	}

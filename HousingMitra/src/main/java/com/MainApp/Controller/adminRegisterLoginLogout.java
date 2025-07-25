@@ -13,11 +13,13 @@ import com.MainApp.Entity.Admin;
 import com.MainApp.Entity.ClubHouse;
 import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
+import com.MainApp.Entity.Staff;
 import com.MainApp.Entity.User;
 import com.MainApp.Service.AdminService;
 import com.MainApp.Service.ClubHouseService;
 import com.MainApp.Service.ComplaintService;
 import com.MainApp.Service.NoticeService;
+import com.MainApp.Service.StaffService;
 import com.MainApp.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,6 +42,9 @@ public class adminRegisterLoginLogout {
 	
 	@Autowired
 	ClubHouseService clubService;
+	
+	@Autowired
+	StaffService stService;
 	
 	
 	 
@@ -99,6 +104,11 @@ public class adminRegisterLoginLogout {
 			List<Notice> ln = nService.getNotices(name);
 			model.addAttribute("ln",ln);
 			
+			//staff added by Admin
+			List<Staff> lstaff = stService.getStaff(name);
+			model.addAttribute("lstaff", lstaff);
+			
+			
 			s.setAttribute("atoken", name);
 			return "redirect:/adminhome";
 		}
@@ -119,6 +129,9 @@ public class adminRegisterLoginLogout {
 		 
 		 List<Notice> ln = nService.getNotices(aname);
 		 model.addAttribute("ln", ln);
+		 
+		 List<Staff> lstaff = stService.getStaff(aname);
+		 model.addAttribute("lstaff", lstaff);
 		
 		//for taking club house booking to admin
 		List<ClubHouse> lab = clubService.getAllBooking();
@@ -134,12 +147,10 @@ public class adminRegisterLoginLogout {
 		model.addAttribute("lau",lau);
 		
 		
+		
+		
 		return "adminhome";
 	}
-	
-	
-	
-	
 	
 	
 	

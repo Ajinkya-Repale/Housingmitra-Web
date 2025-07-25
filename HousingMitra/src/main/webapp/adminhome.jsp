@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.Staff"%>
 <%@page import="com.MainApp.Entity.ClubHouse"%>
 <%@page import="com.MainApp.Entity.User"%>
 <%@page import="com.MainApp.Entity.Complaint"%>
@@ -21,6 +22,8 @@
 	   background-image: url('image1/background.png');
 	   background-repeat: no-repeat;
 	   background-size: cover;
+	   background-attachment: fixed;
+	   background-position: center;
 	   opacity: 1.0;
 	   margin: 0;
 	}
@@ -447,6 +450,158 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 	
+	/*Add Staff form*/
+	
+	/* Staff Form Styling (Similar to Notice Form) */
+	
+	
+	#staffForm {
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  padding: 30px;
+	  width: 400px;
+	  background: transparent; /* Transparent like Notice form */
+	  border-radius: 10px;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#staffForm h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#staffForm label {
+	  display: block;
+	  margin-bottom: 8px;
+	  font-weight: bold;
+	  color: #000;
+	}
+	
+	#staffForm input[type="text"],
+	#staffForm input[type="number"],
+	#staffForm input[type="date"],
+	#staffForm input[type="time"],
+	#staffForm input[type="tel"] {
+	  width: 100%;
+	  padding: 10px;
+	  margin-bottom: 20px;
+	  border-radius: 6px;
+	  border: 1px solid rgba(0, 0, 0, 0.2);
+	  font-size: 15px;
+	  background: rgba(255, 255, 255, 0.3);
+	  color: #000;
+	}
+
+	#staffForm button[type="submit"] {
+	  width: 100%;
+	  padding: 12px;
+	  background-color: rgba(44, 62, 80, 0.8);
+	  color: white;
+	  font-size: 16px;
+	  border: none;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  transition: background 0.3s ease;
+	}
+	
+	#staffForm button[type="submit"]:hover {
+	  background-color: rgba(44, 62, 80, 1);
+	}
+
+	#staffForm .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#staffForm .close-button:hover {
+	  color: #e74c3c;
+	}
+	
+	/*Staff Added by Admin*/
+	
+	/* Staff Table Styling (Same as Member Table) */
+#vStaff {
+  position: absolute;
+  top: 120px; /* adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  display: none;
+  z-index: 10;
+}
+
+#vStaff .close-club-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#vStaff .close-club-btn:hover {
+  color: #e74c3c;
+}
+
+#vStaff h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#vStaff table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
+}
+
+#vStaff th, #vStaff td {
+  padding: 12px 15px;
+  text-align: left;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
+}
+
+#vStaff th {
+  background-color: rgba(44, 62, 80, 0.6);
+  color: #000;
+  font-weight: bold;
+}
+
+#vStaff tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#vStaff tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+	
+	
+	
+	
+	
 	
 
 
@@ -476,8 +631,8 @@ if(atoken != null)
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="showComplaints()">View Complaints</a>
     <a class="nav-button" onclick="showclubbooking()">Club House Booking</a>
-    <a class="nav-button" onclick="showStaff()">Staff Management</a>
-     
+    <a class="nav-button" onclick="showStaff()">Staff Management-Add Staff</a>
+    <a class="nav-button" onclick="showStaffTable()">Staff Table</a>
 
     <a href="admin-logout" class="logout-button">Logout</a>
   </div>
@@ -533,16 +688,6 @@ if(atoken != null)
 
 
 <!-- Manage Members view Ends-->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -724,10 +869,100 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 
 
 
+<!-- Add Staff Section/Form Start-->
+
+<div class="form-container" id="staffForm">
+  <button class="close-button" onclick="closeStaffTable()">✖</button>
+  <form action="add-staff" method="post">
+    <h3>Add Staff</h3>
+
+    <label>Staff Name:</label>
+    <input type="text" name="StaffName" placeholder="Enter staff name" required>
+
+    <label>Staff Role:</label>
+    <input type="text" name="StaffRole" placeholder="e.g. Security, Cleaner, Gardener" required>
+
+	<label>Assigned Area:</label>
+    <input type="text" name="StaffArea" placeholder="e.g. wing,mian gate" required>
+
+    <label>Contact No:</label>
+    <input type="text" name="StaffPhone" placeholder="Enter contact number" pattern="[0-9]{10}" required>
+
+    <label>Joining Date:</label>
+    <input type="date" name="SaffJoiniDate" required>
+
+    <label>Shift Start Time:</label>
+    <input type="time" name="ShiftStartTime" required>
+
+	<label>Shift End Time:</label>
+    <input type="time" name="ShiftEndTime" required>
+    
+    <input type="hidden" name="adminName" value="<%=atoken%>">
+
+    <button type="submit">Add Staff</button>
+  </form>
+</div>
+
+<!-- Add Staff Section/Form End-->
+
+
+<!-- Show Staff Start-->
+
+<%
+
+List<Staff> lstaff=(List<Staff>)request.getAttribute("lstaff");
+
+%>
+
+<section id="vStaff">
+	<button class="close-club-btn" onclick="closeStaffTable()">✖</button>
+	<h3>Staff</h3>
+	<table>
+		<thead>
+		  <tr>
+		  	<th>Staff Id</th>
+		  	<th>Staff Name</th>
+		  	<th>Staff Role</th>
+		  	<th>Assigned Area</th>
+		  	<th>Contact No</th>
+		  	<th>Join Date</th>
+		  	<th>Shift Start Time</th>
+		  	<th>Shift Start Time</th>
+		  </tr>
+		</thead>
+	    <tbody>
+	    <%
+	      for(Staff lst:lstaff)
+	      {
+	    	%>
+	    	<tr>
+	    		<td><%=lst.getStaffId() %></td>
+	    		<td><%=lst.getStaffName() %></td>
+	    		<td><%=lst.getStaffRole() %></td>
+	    		<td><%=lst.getStaffArea() %></td>
+	    		<td><%=lst.getStaffPhone() %></td>
+	    		<td><%=lst.getSaffJoiniDate() %></td>
+	    		<td><%=lst.getShiftStartTime() %></td>
+	    		<td><%=lst.getShiftEndTime() %></td>
+	    			
+	    	</tr>   
+	    	
+	    	<%  
+	      }
+	    %>
+	    </tbody>
+	</table>	
+</section>
 
 
 
 
+
+
+
+
+
+<!-- Show Staff Ends-->
 
 
 
@@ -815,6 +1050,35 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
   {
 	  document.getElementById("vclubbooking").style.display = "none";
   }
+  
+  
+  //staff form contoller
+  
+  function showStaff() 
+  {
+  	document.getElementById("staffForm").style.display = "block";
+  }
+
+  function closeStaff() 
+  {
+	  document.getElementById("staffForm").style.display = "none";
+  }
+  
+  //staff table
+  
+  function showStaffTable() 
+  {
+  	document.getElementById("vStaff").style.display = "block";
+  }
+
+  function closeStaffTable() 
+  {
+	  document.getElementById("vStaff").style.display = "none";
+  }
+  
+
+  
+  
 
 </script>   
  
