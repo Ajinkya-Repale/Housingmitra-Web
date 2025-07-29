@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
 import com.MainApp.Entity.Staff;
 import com.MainApp.Entity.User;
-import com.MainApp.Service.NoticeService;
-import com.MainApp.Service.StaffService;
-import com.MainApp.Service.UserService;
-
+import com.MainApp.Service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class userRegisterLoginLogout {
+
+   
  
 	@Autowired
 	UserService uService;
@@ -30,6 +30,11 @@ public class userRegisterLoginLogout {
 	
 	@Autowired
 	StaffService stService; 
+	
+	@Autowired
+	ComplaintService cService;
+
+    
 	
 	@RequestMapping("/uregister")
 	public String showUserRegister()
@@ -66,7 +71,7 @@ public class userRegisterLoginLogout {
 	
 	
 	@RequestMapping("/userhome")
-	public String hanleUserhome(Model model)
+	public String hanleUserhome(Model model,HttpServletRequest req)
 	{
 		//displaying notices
 		List<Notice> lan = nService.getallNotices(); 
@@ -75,6 +80,12 @@ public class userRegisterLoginLogout {
 		//display staff
 		List<Staff> last = stService.getAllStaff();
 		model.addAttribute("last",last);
+		
+		String uname = (String) req.getSession().getAttribute("utoken");
+	    if (uname != null) {
+	        List<Complaint> lc = cService.getComplaints(uname);
+	        model.addAttribute("lc", lc);
+	    }
 		
 		
 		
@@ -93,8 +104,7 @@ public class userRegisterLoginLogout {
 		HttpSession s = req.getSession();
 		
 		if(res.equals("exists"))
-		{
-
+		{	
 			s.setAttribute("utoken", name);
 			return "redirect:/userhome";
 		}

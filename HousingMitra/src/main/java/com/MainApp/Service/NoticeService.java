@@ -51,6 +51,11 @@ public class NoticeService {
 	}
 	
 	
+	public void deleteNotice(int nid)
+	{
+		nRepo.deleteById(nid);
+		
+	}
 	
 	
 	

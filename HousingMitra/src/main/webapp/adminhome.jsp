@@ -135,43 +135,43 @@
 	  color: #000; /* Black text */
 	}
 
-.form-container textarea {
-  resize: vertical;
-}
-
-.form-container button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: rgba(44, 62, 80, 0.8); /* semi-transparent button */
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: rgba(44, 62, 80, 1);
-}
-
-/* Close Button (same as View Notice) */
-.form-container .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.form-container .close-button:hover {
-  color: #e74c3c;
-}
+	.form-container textarea {
+	  resize: vertical;
+	}
+	
+	.form-container button[type="submit"] {
+	  width: 100%;
+	  padding: 12px;
+	  background-color: rgba(44, 62, 80, 0.8); /* semi-transparent button */
+	  color: white;
+	  font-size: 16px;
+	  border: none;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  transition: background 0.3s ease;
+	}
+	
+	.form-container button[type="submit"]:hover {
+	  background-color: rgba(44, 62, 80, 1);
+	}
+	
+	/* Close Button (same as View Notice) */
+	.form-container .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	.form-container .close-button:hover {
+	  color: #e74c3c;
+	}
 
 
  /*View Notice */
@@ -209,108 +209,144 @@
   color: #e74c3c;
 }
 
-#VNotice h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000; /* black heading */
-}
+	#VNotice h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000; /* black heading */
+	}
 
 /* Table Styling */
-#VNotice table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent; /* ✅ no background */
-}
+	#VNotice table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent; /* ✅ no background */
+	  box-shadow:none;
+	}
 
-#VNotice th, #VNotice td {
-  padding: 12px 15px;
-  text-align: left;
-  color: #000; /* ✅ black text */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
-}
+	#VNotice th, #VNotice td {
+	  padding: 12px 15px;
+	  text-align: center;
+	  color: #000; /* ✅ black text */
+	  border: 1px solid rgba(0, 0, 0, 0.3);/* Thin border like clubhouse table */
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
+	}
 
-#VNotice th {
-  background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
-  color: #000; /* ✅ black heading text */
-  font-weight: bold;
-}
+	#VNotice th {
+	  background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
+	  color: #000; /* ✅ black heading text */
+	  font-weight: bold;
+	}
 
-#VNotice tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3); /* very light gray shading */
-}
+	#VNotice tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3); /* very light gray shading */
+	}
 
-#VNotice tr:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
-}
+	#VNotice tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
+	}
  
 
-/*view Complaints*/
+	/*delete notice button*/
+	
+	.btn-danger
+	{
+		 display: inline-block;
+	    padding: 6px 14px;
+	    font-size: 14px;
+	    font-weight: 500;
+	    color: #dc3545;
+	    background-color: transpert; /* Bootstrap red */
+	    border: 2px solid #dc3545;
+	    border-radius: 6px;
+	    text-decoration: none;
+	    transition: background-color 0.3s ease, transform 0.2s ease;	
+	}
+	
+	
+	
+	.btn-danger:hover {
+     	background-color: #dc3545;
+	    color: #fff;
+	    transform: scale(1.05);
+	    text-decoration: none;
+	}
+	
 
 
-/* Complaints Table (Same style as Notice) */
-#VComplaint {
-  position: absolute;
-  top: 100px; /* so it doesn't overlap with Notice */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 800px;
-  background: transparent;
-  border-radius: 10px;
-  padding: 20px;
-  display: none;
-  z-index: 10;
-}
 
-#VComplaint .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
 
-#VComplaint .close-button:hover {
-  color: #e74c3c;
-}
 
-#VComplaint h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
+/*view Complaints Table*/
 
-#VComplaint table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent;
-}
 
-#VComplaint th, #VComplaint td {
-  padding: 12px 15px;
-  text-align: left;
-  color: #000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
 
-#VComplaint th {
-  background-color: rgba(44, 62, 80, 0.6);
-  color: #000;
-  font-weight: bold;
-}
+	#VComplaint {
+	  position: absolute;
+	  top: 100px; /* so it doesn't overlap with Notice */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent;
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
 
-#VComplaint tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3);
-}
+	#VComplaint .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#VComplaint .close-button:hover {
+	  color: #e74c3c;
+	}
 
-#VComplaint tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
+	#VComplaint h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#VComplaint table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent;
+	}
+
+	#VComplaint th, #VComplaint td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000;
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	}
+
+	#VComplaint th {
+	  background-color: rgba(44, 62, 80, 0.6);
+	  color: #000;
+	  font-weight: bold;
+	}
+
+	#VComplaint tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3);
+	}
+	
+	#VComplaint tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05);
+	}
+
+
+
+
 
 
 /* view Members-Manage members */
@@ -385,70 +421,70 @@
 	/*Club House Booking*/
 	
 	/* Club House Booking Table (Same as Complaints Table but with Thin Border) */
-#vclubbooking {
-  position: absolute;
-  top: 120px; /* adjust as needed */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 900px;
-  background: transparent;
-  border-radius: 10px;
-  padding: 20px;
-  display: none;
-  z-index: 10;
-}
-
-#vclubbooking .close-club-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-#vclubbooking .close-club-btn:hover {
-  color: #e74c3c;
-}
-
-#vclubbooking h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
-
-#vclubbooking table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
-}
-
-#vclubbooking th, #vclubbooking td {
-  padding: 12px 15px;
-  text-align: left;
-  color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
-}
-
-#vclubbooking th {
-  background-color: rgba(44, 62, 80, 0.6);
-  color: #000;
-  font-weight: bold;
-}
-
-#vclubbooking tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-#vclubbooking tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
+	#vclubbooking {
+	  position: absolute;
+	  top: 120px; /* adjust as needed */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 900px;
+	  background: transparent;
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#vclubbooking .close-club-btn {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#vclubbooking .close-club-btn:hover {
+	  color: #e74c3c;
+	}
+	
+	#vclubbooking h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#vclubbooking table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent;
+	  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
+	}
+	
+	#vclubbooking th, #vclubbooking td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000;
+	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
+	}
+	
+	#vclubbooking th {
+	  background-color: rgba(44, 62, 80, 0.6);
+	  color: #000;
+	  font-weight: bold;
+	}
+	
+	#vclubbooking tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3);
+	}
+	
+	#vclubbooking tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05);
+	}
 	
 	/*Add Staff form*/
 	
@@ -530,73 +566,75 @@
 	  color: #e74c3c;
 	}
 	
+	
+	
 	/*Staff Added by Admin*/
 	
 	/* Staff Table Styling (Same as Member Table) */
-#vStaff {
-  position: absolute;
-  top: 120px; /* adjust as needed */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 900px;
-  background: transparent;
-  border-radius: 10px;
-  padding: 20px;
-  display: none;
-  z-index: 10;
-}
-
-#vStaff .close-club-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-#vStaff .close-club-btn:hover {
-  color: #e74c3c;
-}
-
-#vStaff h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
-
-#vStaff table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
-}
-
-#vStaff th, #vStaff td {
-  padding: 12px 15px;
-  text-align: left;
-  color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
-}
-
-#vStaff th {
-  background-color: rgba(44, 62, 80, 0.6);
-  color: #000;
-  font-weight: bold;
-}
-
-#vStaff tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-#vStaff tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
+	#vStaff {
+	  position: absolute;
+	  top: 120px; /* adjust as needed */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 900px;
+	  background: transparent;
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#vStaff .close-club-btn {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000;
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#vStaff .close-club-btn:hover {
+	  color: #e74c3c;
+	}
+	
+	#vStaff h3 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000;
+	}
+	
+	#vStaff table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent;
+	  border: 1px solid rgba(0, 0, 0, 0.3); /* ✅ Thin outer border */
+	}
+	
+	#vStaff th, #vStaff td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000;
+	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
+	}
+	
+	#vStaff th {
+	  background-color: rgba(44, 62, 80, 0.6);
+	  color: #000;
+	  font-weight: bold;
+	}
+	
+	#vStaff tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3);
+	}
+	
+	#vStaff tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05);
+	}
 	
 	
 	
@@ -744,6 +782,8 @@ List<Notice> l=(List<Notice>) request.getAttribute("ln");
             <th>Type</th>
             <th>Date</th> 
             <th>Message</th>        
+            <th>Edit</th>
+            <th>Delete</th>
          </tr>    
       </thead>
       <tbody>
@@ -757,6 +797,18 @@ List<Notice> l=(List<Notice>) request.getAttribute("ln");
     	       <td><%=n.getNoticeType() %></td>
     	       <td><%=n.getNoticeDate() %></td>
     	       <td><%=n.getNoticeMessage() %></td>
+    	       <td>
+    	       		
+						<button>Edit</button>    	       		
+    	       		
+    	       		
+    	       </td>
+    	       <td>
+    	       		<form action="delete-notice" method="post">
+    	       			<input type="hidden" name="Nid" value="<%=n.getNid()%>">
+    	       			<button class="btn btn-sm btn-danger">Delete</button>
+    	       		</form>
+    	       </td>
     	    </tr>
     	 <%   
        } 
@@ -872,7 +924,7 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 <!-- Add Staff Section/Form Start-->
 
 <div class="form-container" id="staffForm">
-  <button class="close-button" onclick="closeStaffTable()">✖</button>
+  <button class="close-button" onclick="closeStaff()">✖</button>
   <form action="add-staff" method="post">
     <h3>Add Staff</h3>
 

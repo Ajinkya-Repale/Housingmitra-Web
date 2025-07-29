@@ -13,6 +13,8 @@ import com.MainApp.Entity.Notice;
 import com.MainApp.Service.ComplaintService;
 import com.MainApp.Service.NoticeService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class ComplaintAddViewEditDelete {
 
@@ -23,15 +25,21 @@ public class ComplaintAddViewEditDelete {
 	NoticeService nService;
 	
 	@RequestMapping("/add-complaint")
-	public String addComplaint(@ModelAttribute Complaint c,Model model)
+	public String addComplaint(@ModelAttribute Complaint c,Model model
+	,HttpServletRequest req)
 	{
 		
 		cService.addComplaint(c);
 		
 		 List<Notice> lan = nService.getallNotices();
 		 model.addAttribute("lan", lan);
+		 
+		 String uname=(String)req.getSession().getAttribute("utoken");
+		 List<Complaint> lc = cService.getComplaints(uname);
+		 model.addAttribute("lc",lc);
+		 
 		
-        return "userhome";
+        return "redirect:/userhome";
 	 
 	}
 	

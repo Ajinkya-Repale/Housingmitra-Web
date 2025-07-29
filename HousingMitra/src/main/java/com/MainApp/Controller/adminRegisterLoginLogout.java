@@ -104,6 +104,7 @@ public class adminRegisterLoginLogout {
 			List<Notice> ln = nService.getNotices(name);
 			model.addAttribute("ln",ln);
 			
+			
 			//staff added by Admin
 			List<Staff> lstaff = stService.getStaff(name);
 			model.addAttribute("lstaff", lstaff);

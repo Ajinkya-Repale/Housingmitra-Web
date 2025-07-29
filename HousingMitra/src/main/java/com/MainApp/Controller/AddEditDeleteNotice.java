@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MainApp.Entity.Notice;
 import com.MainApp.Service.NoticeService;
@@ -38,4 +39,30 @@ public class AddEditDeleteNotice {
 			return "alogin";
 		}	
 	}
+	
+	
+	@RequestMapping("/delete-notice")
+	public String handleDeleteNotice(@RequestParam("Nid") int nid)
+	{
+		nService.deleteNotice(nid);
+		return "redirect:/adminhome";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+	
+
+
+
+
+

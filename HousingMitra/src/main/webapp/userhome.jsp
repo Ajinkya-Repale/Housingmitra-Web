@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.Complaint"%>
 <%@page import="com.MainApp.Entity.Staff"%>
 <%@page import="com.MainApp.Service.NoticeService"%>
 <%@page import="java.util.List"%>
@@ -92,17 +93,17 @@
 
 	
 	.form-container {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 30px;
-  width: 400px;
-  background: transparent; /* ✅ Transparent like the table */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: none;
-  z-index: 10;
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  padding: 30px;
+	  width: 400px;
+	  background: transparent; /* ✅ Transparent like the table */
+	  border-radius: 10px;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	  display: none;
+	  z-index: 10;
 }
 
 	.form-container h3 {
@@ -169,6 +170,111 @@
 	.form-container .close-button:hover {
 	  color: #e74c3c;
 	}
+
+
+	/*View  Complaints Table*/
+	
+	#viewComplaints
+	{
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent; /* fully transparent */
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#viewComplaints th,
+	#viewComplaints td
+	{
+		padding: 12px 15px;
+	  text-align: left;
+	  color: #000; /* ✅ black text */
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	
+	#viewComplaints th
+	{
+		background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
+	  color: #000; /* ✅ black heading text */
+	  font-weight: bold;
+	}
+	
+	#viewComplaints h3
+	{
+	  text-align: center;
+	  margin-bottom: 20px;
+	  color: #000; 
+	}
+
+	.btn-close-complaints
+	{
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000; /* black close button */
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	
+	}
+
+
+	.btn-close-complaints:hover
+	{
+		color: #e74c3c;
+	}
+
+	  #viewComplaints table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  background: transparent; /* ✅ no background */
+	}
+	
+	#viewComplaints th, #viewComplaints td {
+	  padding: 12px 15px;
+	  text-align: left;
+	  color: #000; /* ✅ black text */
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
+	}
+	
+	#viewComplaints th {
+	  background-color: rgba(44, 62, 80, 0.6); /* light semi-transparent for contrast */
+	  color: #000; /* ✅ black heading text */
+	  font-weight: bold;
+	}
+	
+	#viewComplaints tr:nth-child(even) {
+	  background-color: rgba(255, 255, 255, 0.3); /* very light gray shading */
+	}
+	
+	#viewComplaints tr:hover {
+	  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  /*View Notice */
@@ -243,18 +349,18 @@
 
 	
 	.club-form-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 20px; /* Reduced from 30px */
-  background: transparent;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: none;
-  z-index: 10;
-}
+	  position: fixed;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 400px;
+	  padding: 20px; /* Reduced from 30px */
+	  background: transparent;
+	  border-radius: 10px;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	  display: none;
+	  z-index: 10;
+	}
 	
 	.club-form-container h3 {
 	  text-align: center;
@@ -393,7 +499,7 @@ if(utoken != null)
     <a href="/userhome" class="nav-button">Home</a>
     <a class="nav-button" onclick="showViewNotice()">View Notice</a>
     <a class="nav-button" onclick="AddComplaints()">Add Complaints</a>
-    <a href="#" class="nav-button">View Complaints</a>
+    <a class="nav-button" onclick="ViewComplaintsTable()">View Complaints</a>
     <a class="nav-button" onclick="openClubBookingForm()">Club House Booking</a>
     <a class="nav-button" onclick="showStaff()">Staff Management</a>
      
@@ -475,8 +581,66 @@ if(utoken != null)
 </div>
 
 
-
 <!-- Add Complaints form Ends -->
+
+<!-- View Complaints Table Start -->
+
+<%
+List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
+%>
+
+
+<section id="viewComplaints">
+  <button class="btn-close-complaints" onclick="closeViewComplaints()">✖</button>
+  <h3>Complaints</h3>
+  <table>
+  	<thead>
+  		<tr>
+  			<th>Complaint ID</th>
+  			<th>Complaint Name</th>
+  			<th>Complaint Type</th>
+  			<th>Complaint Date</th>
+  			<th>Complaint Message</th>
+  		</tr>	
+  	</thead>
+  	<tbody>
+  		<%
+  		for(Complaint c:lc)
+  		{
+  		%>
+  			<tr>
+  				<td><%=c.getComplaintid() %></td>
+  				<td><%=c.getComplaintName() %></td>
+  				<td><%=c.getComplaintType() %></td>
+  				<td><%=c.getComplaintDate() %></td>
+  				<td><%=c.getComplaintMessage() %></td>
+  			</tr>	
+  		<%
+  		}
+  		%>
+  	</tbody>
+</table>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -624,6 +788,19 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
 	  document.getElementById("AddComplaint").style.display="none";
   }
   
+  //view Complaints
+  
+  function ViewComplaintsTable()
+  {
+	  document.getElementById("viewComplaints").style.display="block";
+  }
+  
+  function closeViewComplaints()
+  {
+	  document.getElementById("viewComplaints").style.display="none";
+  }
+
+  //view notice
   
   function showViewNotice()
   {
@@ -678,6 +855,7 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
 
 
 <%	
+
 }
 else
 {
