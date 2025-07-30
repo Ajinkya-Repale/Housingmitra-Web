@@ -459,6 +459,68 @@
 	}
 
 
+	/*ClubHouse Approved booking*/
+	
+	.booking-container {
+        position: relative;
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin-top: 20px;
+        border-radius: 8px;
+    }
+
+    .booking-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .booking-table th,
+    .booking-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .booking-table th {
+        background-color: #f2f2f2;
+    }
+
+    .app-close-btn {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        font-size: 18px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .app-close-btn:hover {
+        background-color: #cc0000;
+    }
+    
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	/*Show Staff */
@@ -761,10 +823,10 @@ List<ClubHouse> appl=(List<ClubHouse>)request.getAttribute("approvedList");
 
 
 
-<section id="approved-booking-table">
-	<button onclick="closeClubBookingTable()">✖</button>
+<section class="booking-container" id="bookingSection">
+	<button class="app-close-btn" onclick="closeClubBookingTable()">✖</button>
 	<h3>Approved Bookings</h3>
-	<table>
+	<table class="booking-table">
 		<thead>
 			<tr>
 				<th>Booking Id</th>
