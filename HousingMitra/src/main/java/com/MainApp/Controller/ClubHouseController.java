@@ -20,7 +20,6 @@ public class ClubHouseController {
 
 	@Autowired
 	ClubHouseService clubhouseService;
-
 	
 	@Autowired
 	NoticeService nService;
@@ -33,7 +32,7 @@ public class ClubHouseController {
 		List<Notice> lan = nService.getallNotices();
 		model.addAttribute("lan",lan);
 		
-		return "userhome";
+		return "redirect:/userhome";
 	}
 	
 	

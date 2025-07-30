@@ -461,47 +461,71 @@
 
 	/*ClubHouse Approved booking*/
 	
-	.booking-container {
-        position: relative;
-        border: 1px solid #ccc;
-        padding: 16px;
-        margin-top: 20px;
-        border-radius: 8px;
-    }
+	#bookingSection {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  display: none;
+  z-index: 10;
+}
 
-    .booking-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+#bookingSection h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
 
-    .booking-table th,
-    .booking-table td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-    }
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
 
-    .booking-table th {
-        background-color: #f2f2f2;
-    }
+.booking-table th,
+.booking-table td {
+  padding: 12px 15px;
+  text-align: center;
+  color: #000;
+  border: 1px solid black;
+}
 
-    .app-close-btn {
-        position: absolute;
-        top: 8px;
-        right: 12px;
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        font-size: 18px;
-        padding: 4px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+.booking-table th {
+  background-color: rgba(44, 62, 80, 0.6);
+  color: #000;
+  font-weight: bold;
+}
 
-    .app-close-btn:hover {
-        background-color: #cc0000;
-    }
-    
+.booking-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.booking-table tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.app-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.app-close-btn:hover {
+  color: #e74c3c;
+}
+   
 	
 
 
@@ -823,7 +847,7 @@ List<ClubHouse> appl=(List<ClubHouse>)request.getAttribute("approvedList");
 
 
 
-<section class="booking-container" id="bookingSection">
+<section id="bookingSection">
 	<button class="app-close-btn" onclick="closeClubBookingTable()">✖</button>
 	<h3>Approved Bookings</h3>
 	<table class="booking-table">
@@ -1054,12 +1078,12 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
   
   function openClubBookingTable()
   {
-	  document.getElementById("approved-booking-table").style.display = "block";
+	  document.getElementById("bookingSection").style.display = "block";
   }
   
   function closeClubBookingTable()
   {
-	  document.getElementById("approved-booking-table").style.display = "none";
+	  document.getElementById("bookingSection").style.display = "none";
   }
   
   
