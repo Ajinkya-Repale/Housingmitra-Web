@@ -178,36 +178,36 @@
  
  
  
- #VNotice {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 800px;
-  background: transparent; /* fully transparent */
-  border-radius: 10px;
-  padding: 20px;
-  display: none;
-  z-index: 10;
-}
-
-#VNotice .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000; /* black close button */
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-#VNotice .close-button:hover {
-  color: #e74c3c;
-}
+	 #VNotice {
+	  position: absolute;
+	  top: 50px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 80%;
+	  max-width: 800px;
+	  background: transparent; /* fully transparent */
+	  border-radius: 10px;
+	  padding: 20px;
+	  display: none;
+	  z-index: 10;
+	}
+	
+	#VNotice .close-button {
+	  position: absolute;
+	  top: 10px;
+	  right: 15px;
+	  background: none;
+	  border: none;
+	  font-size: 20px;
+	  font-weight: bold;
+	  color: #000; /* black close button */
+	  cursor: pointer;
+	  transition: color 0.2s ease;
+	}
+	
+	#VNotice .close-button:hover {
+	  color: #e74c3c;
+	}
 
 	#VNotice h3 {
 	  text-align: center;
@@ -497,6 +497,35 @@
 	#vclubbooking tr:hover {
 	  background-color: rgba(0, 0, 0, 0.05);
 	}
+	
+	.approve-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .approve-btn:hover {
+        background-color: #45a049;
+}
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*Add Staff form*/
 	
@@ -901,6 +930,7 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 		  	<th>End Time</th>
 		  	<th>Purpose</th>
 		  	<th>No of Guest</th>
+		  	<th>Status</th>
 		  </tr>
 		</thead>
 	    <tbody>
@@ -918,6 +948,12 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 	    		<td><%=lb.getEventEndTime() %></td>
 	    		<td><%=lb.getBookingPurpose() %></td>
 	    		<td><%=lb.getGuestCount() %></td>	
+	    		<td>
+	    			<form action="approve-booking" method="post">
+	    			<input type="hidden" value="<%=lb.getBookingId()%>" name="BookingId">
+	    			<button type="submit" class="approve-btn">Approve</button>
+	    			</form>
+	    		</td>
 	    	</tr>   
 	    	
 	    	<%  

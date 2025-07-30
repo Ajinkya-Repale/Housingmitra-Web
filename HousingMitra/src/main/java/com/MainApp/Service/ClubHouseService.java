@@ -45,7 +45,23 @@ public class ClubHouseService {
 	
 	
 	
+	public void approvebooking(int BookingId)
+	{
+		Optional<ClubHouse> NewBooking = clRepo.findById(BookingId);
+		if(NewBooking.isPresent())
+		{
+			ClubHouse booking = NewBooking.get();
+			booking.setAdminApproval("approved");
+			clRepo.save(booking);
+		}
+		
+	}
 	
+	
+	public List<ClubHouse> getApprovedBookings()
+	{
+		return clRepo.findByAdminApproval("Approved");
+	}
 	
 	
 	

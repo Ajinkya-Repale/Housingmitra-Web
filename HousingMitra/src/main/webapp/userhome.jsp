@@ -1,3 +1,4 @@
+<%@page import="com.MainApp.Entity.ClubHouse"%>
 <%@page import="com.MainApp.Entity.Complaint"%>
 <%@page import="com.MainApp.Entity.Staff"%>
 <%@page import="com.MainApp.Service.NoticeService"%>
@@ -571,6 +572,7 @@ if(utoken != null)
     <a class="nav-button" onclick="AddComplaints()">Add Complaints</a>
     <a class="nav-button" onclick="ViewComplaintsTable()">View Complaints</a>
     <a class="nav-button" onclick="openClubBookingForm()">Club House Booking</a>
+    <a class="nav-button" onclick="openClubBookingTable()">Approved Booking</a>
     <a class="nav-button" onclick="showStaff()">Staff Management</a>
      
 
@@ -751,6 +753,86 @@ List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
 
 <!-- Club House Booking Form End -->
 
+
+<!-- Approved ClubHouse Booking Start -->
+<%
+List<ClubHouse> appl=(List<ClubHouse>)request.getAttribute("approvedList");
+%>
+
+
+
+<section id="approved-booking-table">
+	<button onclick="closeClubBookingTable()">✖</button>
+	<h3>Approved Bookings</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Booking Id</th>
+				<th>Member Name</th>
+				<th>Contact No</th>
+				<th>Flat No</th>
+				<th>Booking Date</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>Purpose</th>
+				<th>No of Guest</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%
+			for(ClubHouse al:appl)
+			{
+				%>
+				  <tr>
+				  	<td><%=al.getBookingId() %></td>
+				  	<td><%=al.getUserName() %></td>
+				  	<td><%=al.getUserPhone() %></td>
+				  	<td><%=al.getUserFlatNo() %></td>
+				  	<td><%=al.getBookingDate() %></td>
+				  	<td><%=al.getEventStartTime() %></td>
+				  	<td><%=al.getEventEndTime() %></td>
+				  	<td><%=al.getBookingPurpose() %></td>
+				  	<td><%=al.getGuestCount() %></td>
+				  	<td><%=al.getAdminApproval() %></td>  
+				  </tr>
+				<%
+			}		
+		%>			
+		</tbody>
+	</table>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Approved ClubHouse Booking Ends -->
 	
 	
 <%
@@ -904,6 +986,25 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
   {
 	  document.getElementById("Vstaff").style.display = "none";
   }
+  
+  
+  //approved club house booking table
+  
+  function openClubBookingTable()
+  {
+	  document.getElementById("approved-booking-table").style.display = "block";
+  }
+  
+  function closeClubBookingTable()
+  {
+	  document.getElementById("approved-booking-table").style.display = "none";
+  }
+  
+  
+  
+  
+  
+  
 
 </script>   
  

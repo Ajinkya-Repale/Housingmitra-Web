@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.MainApp.Entity.ClubHouse;
 import com.MainApp.Entity.Complaint;
 import com.MainApp.Entity.Notice;
 import com.MainApp.Entity.Staff;
@@ -33,6 +34,9 @@ public class userRegisterLoginLogout {
 	
 	@Autowired
 	ComplaintService cService;
+	
+	@Autowired
+	ClubHouseService clubService;
 
     
 	
@@ -80,6 +84,12 @@ public class userRegisterLoginLogout {
 		//display staff
 		List<Staff> last = stService.getAllStaff();
 		model.addAttribute("last",last);
+		
+		//display approved clubHouse booking
+		List<ClubHouse> approvedList = clubService.getApprovedBookings();
+		model.addAttribute("approvedList",approvedList);
+		
+	
 		
 		String uname = (String) req.getSession().getAttribute("utoken");
 	    if (uname != null) {

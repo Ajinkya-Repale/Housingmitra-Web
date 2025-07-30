@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.MainApp.Entity.ClubHouse;
 import com.MainApp.Entity.Notice;
@@ -32,11 +33,20 @@ public class ClubHouseController {
 		List<Notice> lan = nService.getallNotices();
 		model.addAttribute("lan",lan);
 		
-		
-		
 		return "userhome";
 	}
 	
+	
+	@RequestMapping("/approve-booking")
+	public String HandleApproveClubBooking(@RequestParam("BookingId") int BookingId)
+	{
+		clubhouseService.approvebooking(BookingId);
+		return "redirect:/adminhome";
+	}
+	
+	
+	
+		
 	
 	
 	
