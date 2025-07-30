@@ -193,7 +193,7 @@
 	#viewComplaints td
 	{
 		padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000; /* ✅ black text */
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
@@ -261,8 +261,46 @@
 	}
 
 
+	/* Apply thin black border to complaint table */
+	table.complaint-table {
+	    width: 100%;
+	    border-collapse: collapse;
+	    border: 1px solid black;
+	    background-color: transparent;
+	}
+	
+	table.complaint-table th,
+	table.complaint-table td {
+	    border: 1px solid black;
+	    padding: 8px;
+	    text-align: left;
+	}
 
 
+	table.complaint-table tr:nth-child(even) {
+	    background-color: rgba(0, 0, 0, 0.03);
+	}
+	
+
+	/*delete button*/
+	
+	
+	.delete-btn {
+    background-color: transparent;
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+	}
+
+	.delete-btn:hover {
+	    background-color: #e74c3c;
+	    color: white;
+	}
+	
 
 
 
@@ -326,7 +364,7 @@
 	
 	#VNotice th, #VNotice td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000; /* ✅ black text */
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* light gray separators */
 	}
@@ -344,8 +382,23 @@
 	#VNotice tr:hover {
 	  background-color: rgba(0, 0, 0, 0.05); /* subtle hover highlight */
 	}
+	
+	
+	.notice-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+	}
+
+	.notice-table th,
+	.notice-table td {
+	    border: 1px solid black;
+	    padding: 8px;
+	    text-align: center;
+	}
+	
 	 
-/*Club HOuse Booking form */
+/*Club House Booking form */
 
 	
 	.club-form-container {
@@ -404,6 +457,9 @@
 	  background-color: rgba(44, 62, 80, 1);
 	}
 
+
+
+
 	/*Show Staff */
 	
 	
@@ -452,7 +508,7 @@
 	
 	#Vstaff th, #Vstaff td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000;
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Thin light border */
 	}
@@ -469,6 +525,20 @@
 	
 	#Vstaff tr:hover {
 	  background-color: rgba(0, 0, 0, 0.05);
+	}
+	
+	/*staff table style*/
+	
+	.staff-table {
+	  border-collapse: collapse;
+	  width: 100%;
+	  border: 1px solid black;
+	}
+
+	.staff-table th, .staff-table td {
+	  border: 1px solid black;
+	  padding: 8px;
+	  text-align: center;
 	}
 	
 	
@@ -518,7 +588,7 @@ if(utoken != null)
 <section id="VNotice">
   <button class="close-button" onclick="closeViewNotice()">✖</button>
   <h3>Notice</h3>
-  <table>
+  <table class="notice-table">
       <thead>
          <tr>
             <th>Notice Id</th>
@@ -593,7 +663,7 @@ List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
 <section id="viewComplaints">
   <button class="btn-close-complaints" onclick="closeViewComplaints()">✖</button>
   <h3>Complaints</h3>
-  <table>
+  <table class="complaint-table">
   	<thead>
   		<tr>
   			<th>Complaint ID</th>
@@ -601,6 +671,8 @@ List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
   			<th>Complaint Type</th>
   			<th>Complaint Date</th>
   			<th>Complaint Message</th>
+  			<th>Status</th>
+  			<th>Delete</th>
   		</tr>	
   	</thead>
   	<tbody>
@@ -614,6 +686,13 @@ List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
   				<td><%=c.getComplaintType() %></td>
   				<td><%=c.getComplaintDate() %></td>
   				<td><%=c.getComplaintMessage() %></td>
+  				<td></td>
+  				<td>
+  					<form action="delete-complaint" method="post">
+  						<input type="hidden" name="complaintid" value="<%=c.getComplaintid()%>">
+  						<button class="delete-btn" type="submit">Delete</button>
+  					</form>
+  				</td>
   			</tr>	
   		<%
   		}
@@ -622,21 +701,6 @@ List<Complaint> lc =(List<Complaint>) request.getAttribute("lc");
 </table>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -699,7 +763,7 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
 <section id="Vstaff">
   <button class="close-button" onclick="closeStaff()">✖</button>
   <h3>Staff</h3>
-  <table>
+  <table class="staff-table">
       <thead>
          <tr>
             <th>Staff Id</th>
@@ -709,7 +773,7 @@ List<Staff> last =(List<Staff>)request.getAttribute("last");
 		  	<th>Contact No</th>
 		  	<th>Join Date</th>
 		  	<th>Shift Start Time</th>
-		  	<th>Shift Start Time</th>       
+		  	<th>Shift End Time</th>       
          </tr>    
       </thead>
       <tbody>

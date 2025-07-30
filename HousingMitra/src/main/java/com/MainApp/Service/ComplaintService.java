@@ -47,4 +47,13 @@ public class ComplaintService {
 	}
 	
 	
+	public void deleteComplaint(int complaintid)
+	{
+		cRepo.deleteById(complaintid);
+	}
+	
+	
+	
+	
+	
 }

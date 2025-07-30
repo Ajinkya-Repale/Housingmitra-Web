@@ -85,9 +85,7 @@ public class userRegisterLoginLogout {
 	    if (uname != null) {
 	        List<Complaint> lc = cService.getComplaints(uname);
 	        model.addAttribute("lc", lc);
-	    }
-		
-		
+	    }		
 		
 		return "userhome";
 	}

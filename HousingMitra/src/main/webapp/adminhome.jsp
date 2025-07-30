@@ -250,19 +250,17 @@
 	
 	.btn-danger
 	{
-		 display: inline-block;
+		display: inline-block;
 	    padding: 6px 14px;
 	    font-size: 14px;
 	    font-weight: 500;
 	    color: #dc3545;
-	    background-color: transpert; /* Bootstrap red */
+	    background-color: transpert; 
 	    border: 2px solid #dc3545;
 	    border-radius: 6px;
 	    text-decoration: none;
 	    transition: background-color 0.3s ease, transform 0.2s ease;	
-	}
-	
-	
+	}	
 	
 	.btn-danger:hover {
      	background-color: #dc3545;
@@ -325,7 +323,7 @@
 
 	#VComplaint th, #VComplaint td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000;
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
@@ -343,6 +341,20 @@
 	#VComplaint tr:hover {
 	  background-color: rgba(0, 0, 0, 0.05);
 	}
+
+
+    table.complaint-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+
+    table.complaint-table th,
+    table.complaint-table td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
 
 
 
@@ -399,7 +411,7 @@
 	
 	#VMember th, #VMember td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000;
 	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin borders for cells */
 	}
@@ -467,7 +479,7 @@
 	
 	#vclubbooking th, #vclubbooking td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000;
 	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
 	}
@@ -617,7 +629,7 @@
 	
 	#vStaff th, #vStaff td {
 	  padding: 12px 15px;
-	  text-align: left;
+	  text-align: center;
 	  color: #000;
 	  border: 1px solid rgba(0, 0, 0, 0.2); /* ✅ Thin cell borders */
 	}
@@ -831,7 +843,7 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 <section id="VComplaint">
 	<button class="close-button" onclick="closeComplaints()">✖</button>
 	<h3>Complaints</h3>
-	<table>
+	<table class="complaint-table">
 	    <thead>
 		 	<tr>
 		 		<th>Complaint Id</th>
@@ -876,7 +888,7 @@ List<Complaint> lac=(List<Complaint>) request.getAttribute("lac");
 
 <section id="vclubbooking">
 	<button class="close-club-btn" onclick="closeclubbooking()">✖</button>
-	<h3>club house booking</h3>
+	<h3>Club House Booking</h3>
 	<table>
 		<thead>
 		  <tr>
@@ -979,7 +991,7 @@ List<Staff> lstaff=(List<Staff>)request.getAttribute("lstaff");
 		  	<th>Contact No</th>
 		  	<th>Join Date</th>
 		  	<th>Shift Start Time</th>
-		  	<th>Shift Start Time</th>
+		  	<th>Shift End Time</th>
 		  </tr>
 		</thead>
 	    <tbody>
